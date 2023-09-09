@@ -3,42 +3,44 @@ pragma solidity ^0.8.13;
 
 import {Test, console2} from "forge-std/Test.sol";
 import {CentralMint} from "../src/CentralMint.sol";
+import {MockERC20} from "../src/MockERC20.sol";
 
 contract CentralMintTest is Test {
     CentralMint centralMint;
+    MockERC20 mockToken;
+
+    address internal alice = vm.addr(0x1);
+    address internal bob = vm.addr(0x2);
+    address internal admin = vm.addr(0x3);
 
     function setUp() public {
-        centralMint = new CentralMint();
+        mockToken = new MockERC20("wETH", "wETH", 18);
+        centralMint = new CentralMint(address(mockToken), admin);
+        mockToken.mint(alice, 10 ether);
+        mockToken.mint(bob, 5 ether);
     }
 
-    // Test initialization of the CentralMint
     function testInitiateMint() public {
-        uint initialBalance = address(this).balance;
-        uint amount = 1 ether;
+        uint256 initialBalance = mockToken.balanceOf(alice);
+        uint256 amount = 1 ether;
 
-        centralMint.initiateMint{value: amount}();
+        vm.prank(alice);
+        mockToken.increaseAllowance(address(centralMint), amount);
+        vm.prank(alice);
+        centralMint.initiateMint(amount);
 
-        assertEq(address(centralMint).balance, amount);
-        emit log_named_uint(
-            "Contract ETH Balance",
-            address(centralMint).balance
-        );
-        emit log_named_uint("Sender ETH Balance", initialBalance - amount);
+        assertEq(mockToken.balanceOf(address(centralMint)), amount);
+        assertEq(mockToken.balanceOf(alice), initialBalance - amount);
     }
 
-    // Test honoring the mint
     function testHonorMint() public {
-        address payable recipient = payable(address(0x1234));
-        uint amount = 1 ether;
+        uint256 amount = 1 ether;
 
-        centralMint.initiateMint{value: amount}();
-        centralMint.honorMint(recipient, amount);
+        vm.prank(admin);
+        mockToken.mint(address(centralMint), amount); // Manually mint tokens to CentralMint for testing
+        centralMint.honorMint(bob, amount);
 
-        assertEq(address(centralMint).balance, 0);
-        emit log_named_uint(
-            "Contract ETH Balance",
-            address(centralMint).balance
-        );
-        emit log_named_uint("Recipient ETH Balance", recipient.balance);
+        assertEq(mockToken.balanceOf(address(centralMint)), 0);
+        assertEq(mockToken.balanceOf(bob), 6 ether); // Initial 5 ether + 1 ether honored
     }
 }

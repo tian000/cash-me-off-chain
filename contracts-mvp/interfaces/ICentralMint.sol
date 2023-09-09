@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 interface ICentralMint {
-    function initiateMint() external payable;
+    function initiateMint(uint256 amount) external payable;
 
     function honorMint(address recipient, uint256 amount) external;
 

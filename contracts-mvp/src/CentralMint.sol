@@ -1,18 +1,33 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "./ICentralMint.sol";
+import "../interfaces/ICentralMint.sol";
+import "../interfaces/IAxelarGateway.sol";
+import {IERC20} from "openzeppelin-contracts/token/ERC20/IERC20.sol";
+
+// Make sure to include your IERC20 interface here
 
 contract CentralMint is ICentralMint {
     address public owner;
+    IAxelarGateway public axelarGateway; // Assuming you have this interface
+    IERC20 public erc20Token; // ERC20 token interface
 
-    constructor() {
+    constructor(address _erc20Address, address _axelarGateway) {
         owner = msg.sender;
+        // Initialize the ERC20 token
+        erc20Token = IERC20(_erc20Address);
+
+        // Initialize the Axelar Gateway
+        axelarGateway = IAxelarGateway(_axelarGateway);
     }
 
-    function initiateMint() external payable override {
-        emit MintInitiated(msg.sender, msg.value);
-        // Blinded data is sent off-chain
+    function initiateMint(uint256 amount) external payable override {
+        require(
+            erc20Token.transferFrom(msg.sender, address(this), amount),
+            "Transfer failed"
+        );
+        emit MintInitiated(msg.sender, amount);
+        // Blinded data is sent and verified by eigenlayer operators off-chain
     }
 
     function setEigenlayerMPCAddress(address _mpc) external override isOwner {
@@ -24,8 +39,7 @@ contract CentralMint is ICentralMint {
         uint256 amount
     ) external override isOwner {
         // Validity is checked off-chain
-        payable(recipient).transfer(amount);
-
+        require(erc20Token.transfer(recipient, amount), "Transfer failed");
         emit MintHonored(recipient, amount);
     }
 
@@ -34,8 +48,8 @@ contract CentralMint is ICentralMint {
         uint256 amount
     ) external override isOwner {
         // Validity is checked off-chain
-        payable(recipient).transfer(amount);
-
+        erc20Token.approve(address(axelarGateway), amount);
+        axelarGateway.sendToken("ethereum", "recipient", "axelar", amount);
         emit MintHonored(recipient, amount);
     }
 

@@ -1,4 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cash Me Off-Chain
+
+## A privacy and scaling solution to Ethereum / EVM chains
+
+#### Authors: Diyahir Campos, James Scanlon, Napas Udomsak
+
+---
+
+## Project structure
+
+1. [Smart Contracts](/contracts-mvp/)
+2. [eCash Web Wallet](/src/)
+3. [EY Challenge Markdown](/EYChallenge.md)
 
 ## Getting Started
 

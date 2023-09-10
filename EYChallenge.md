@@ -19,7 +19,7 @@
 
 ## What is eCash?
 
-eCash is a digital currency model that functions much like physical cash, but with the added benefits of digital transfer. In this system, the data itself represents the monetary value. Unlike traditional digital transactions that require third-party validations and leave a public record, eCash can be transferred anonymously and without the need for on-chain confirmations. You can send eCash through any data transfer method—be it email, Telegram, SMS, or even written down on paper—and the transaction settles instantly. In a conventional eCash system, a central entity, often likened to a central bank, issues these digital notes and honors them upon presentation. Importantly, this entity doesn't have access to the full transaction history of each note, further preserving user privacy.
+eCash is a digital currency that acts like physical cash, where data itself holds the value. It allows for instant, anonymous transfers using any data-sharing method like email or SMS. Unlike traditional systems, there's no need for on-chain confirmations. A central entity issues and honors these digital notes but cannot track their history, adding an extra layer of privacy.
 
 - eCash works similar to physical cash, where the data _is_ the money.
 - eCash can be transferred in any way you can transfer data with instant settlement.

@@ -8,7 +8,7 @@
 
 ## Project structure
 
-1. [Smart Contracts](/contracts-mvp/)
+1. [Smart Contracts](/contracts/)
 2. [eCash Web Wallet](/src/)
 3. [EY Challenge Markdown](/EYChallenge.md)
 
@@ -55,6 +55,8 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Getting Started: Smart Contracts
+
+Foundry required to be installed.
 
 ```bash
 cd contracts

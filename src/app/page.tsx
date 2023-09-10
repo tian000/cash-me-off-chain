@@ -1,114 +1,56 @@
+'use client';
 import React from "react"
 import {Box, Flex, Stat, StatArrow, StatHelpText, StatLabel, StatNumber} from "@chakra-ui/react"
+import {Transaction, TransactionRow} from "@/components/transactionRow";
+import {Buttons} from "@/components/buttons";
+const transactions: Transaction[] = [
+    {
+        symbol: "BTC",
+        amount: (518.74).toFixed(2),
+        from: "me",
+        to: "bc1pta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0"
+    },
+    {
+        symbol: "BTC",
+        amount: (67192.58).toFixed(2),
+        from: "me",
+        to: "bc1pta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0"
+    },
+    {
+        symbol: "BTC",
+        amount: (25785.93).toFixed(2),
+        from: "me",
+        to: "bc1pta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0"
+    },
+    {
+        symbol: "BTC",
+        amount: (67192.58).toFixed(2),
+        from: "me",
+        to: "bc1pta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0"
+    },
+    {
+        symbol: "BTC",
+        amount: (518.74).toFixed(2),
+        from: "me",
+        to: "bc1pta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0"
+    }
+]
 
 export default function Home() {
     return (
         <Flex align="center" justify="center" direction={"column"}>
             <Box display="flex" alignItems="center" justifyContent="space-between">
-                <Stat>
-                    <StatLabel>Current Balance</StatLabel>
-                    <StatNumber>345,670</StatNumber>
-                    <StatHelpText>
+                <Stat display="flex" alignItems="center" justifyContent="space-between">
+                    <StatLabel textAlign="center">Current Balance</StatLabel>
+                    <StatNumber textAlign="center">345,670 BTC</StatNumber>
+                    <StatHelpText textAlign="center">
                         <StatArrow type='increase'/>
                         23.36%
                     </StatHelpText>
                 </Stat>
             </Box>
-
-
-            <Box display="flex" alignItems="center" justifyContent="space-between">
-                5000
-            </Box>
-            Flex Container
+            {transactions.map(tx => <TransactionRow {...tx}  />)}
+            <Buttons/>
         </Flex>)
-    // return (
-    //   <main className={styles.main}>
-    //     <div className={styles.description}>
-    //       <p>
-    //        HELLO JAMES Get started by editing&nbsp;
-    //         <code className={styles.code}>src/app/page.tsx</code>
-    //       </p>
-    //       <div>
-    //         <a
-    //           href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //           target="_blank"
-    //           rel="noopener noreferrer"
-    //         >
-    //           By{' '}
-    //           <Image
-    //             src="/vercel.svg"
-    //             alt="Vercel Logo"
-    //             className={styles.vercelLogo}
-    //             width={100}
-    //             height={24}
-    //             priority
-    //           />
-    //         </a>
-    //       </div>
-    //     </div>
-    //
-    //     <div className={styles.center}>
-    //       <Image
-    //         className={styles.logo}
-    //         src="/next.svg"
-    //         alt="Next.js Logo"
-    //         width={180}
-    //         height={37}
-    //         priority
-    //       />
-    //     </div>
-    //
-    //     <div className={styles.grid}>
-    //       <a
-    //         href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //         className={styles.card}
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         <h2>
-    //           Docs <span>-&gt;</span>
-    //         </h2>
-    //         <p>Find in-depth information about Next.js features and API.</p>
-    //       </a>
-    //
-    //       <a
-    //         href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //         className={styles.card}
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         <h2>
-    //           Learn <span>-&gt;</span>
-    //         </h2>
-    //         <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-    //       </a>
-    //
-    //       <a
-    //         href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //         className={styles.card}
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         <h2>
-    //           Templates <span>-&gt;</span>
-    //         </h2>
-    //         <p>Explore the Next.js 13 playground.</p>
-    //       </a>
-    //
-    //       <a
-    //         href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //         className={styles.card}
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         <h2>
-    //           Deploy <span>-&gt;</span>
-    //         </h2>
-    //         <p>
-    //           Instantly deploy your Next.js site to a shareable URL with Vercel.
-    //         </p>
-    //       </a>
-    //     </div>
-    //   </main>
-    // )
+
 }

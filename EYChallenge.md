@@ -51,7 +51,7 @@ sequenceDiagram
     ECM->>ECM: Sign S(Data) => B(S(Data))
     ECM->>User1: Send B(S(Data))
     User1->>User1: Unblinds Note
-    Note over User1: S(data) = S-1(B(S(data))) = B(Data)
+    Note over User1: S(data) = S^-1(B(S(data))) = B(Data)
 
     User1-->>User2: Send Note and Proof (B(data), data)
     User2->>User2: Verify Signatures
@@ -59,6 +59,7 @@ sequenceDiagram
     User2->>ECM: Send Data and Address (B(data), data, address)
 
     ECM->>ECM: Verifies Signature and Honors eCash
+    Note over ECM: [B(data),data] stored in eigenDA or other DA provider
     ECM->>ETH: Send ETH to address
 ```
 

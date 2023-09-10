@@ -1,6 +1,17 @@
 'use client';
 import React, {useEffect, useState} from "react"
-import {Box, Button, Flex, FormControl, Heading, NumberInput, NumberInputField, Spinner, Text} from '@chakra-ui/react'
+import {
+    Box,
+    Button,
+    Flex,
+    FormControl,
+    Heading,
+    NumberInput,
+    NumberInputField,
+    Skeleton,
+    Spinner,
+    Text
+} from '@chakra-ui/react'
 import {Link} from "@chakra-ui/next-js";
 
 import {v4 as uuidv4} from 'uuid';
@@ -44,19 +55,15 @@ export function Step2() {
 
     return (
         <Flex align="center" justify="center" direction={"column"}>
-            <Heading>
+            <Heading p="2">
                 Minting eCash
             </Heading>
-            <SimpleGrid columns={2} spacing={10}>
+            <SimpleGrid columns={2} spacing={0} px={100}>
                 <SendStepper onDone={() => setIsDone(true)}></SendStepper>
                 <Box p="2" justifySelf="center" alignSelf="center">
-                    {!isDone ? (<Spinner
-                        thickness='4px'
-                        speed='0.65s'
-                        emptyColor='gray.200'
-                        color='blue.500'
-                        size='xl'
-                    />) : <NotesTable/>}
+                    <Skeleton isLoaded={isDone}>
+                        <NotesTable/>
+                    </Skeleton>
                 </Box>
             </SimpleGrid>
         </Flex>

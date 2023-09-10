@@ -1,51 +1,50 @@
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    TableContainer,
-} from '@chakra-ui/react'
+import {IconButton, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr} from '@chakra-ui/react'
+import {v4 as uuidv4} from "uuid"
+import {BiSolidCopy} from "react-icons/bi";
 
 export function NotesTable() {
     return (
         <TableContainer>
             <Table variant='simple'>
-                <TableCaption>Imperial to metric conversion factors</TableCaption>
                 <Thead>
                     <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
+                        <Th>eCash</Th>
+                        <Th isNumeric>Denomination</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     <Tr>
-                        <Td>inches</Td>
-                        <Td>millimetres (mm)</Td>
-                        <Td isNumeric>25.4</Td>
+                        <Td>{uuidv4()} &nbsp;
+                            <IconButton
+                                aria-label='Copy'
+                                size='sm'
+                                icon={<BiSolidCopy/>}
+                            /></Td>
+                        <Td isNumeric>0.1 ETH</Td>
+
                     </Tr>
                     <Tr>
-                        <Td>feet</Td>
-                        <Td>centimetres (cm)</Td>
-                        <Td isNumeric>30.48</Td>
+                        <Td>{uuidv4()} &nbsp;
+                            <IconButton
+                                aria-label='Copy'
+                                size='sm'
+                                icon={<BiSolidCopy/>}
+                            /></Td> <Td isNumeric>0.2 ETH</Td>
                     </Tr>
                     <Tr>
-                        <Td>yards</Td>
-                        <Td>metres (m)</Td>
-                        <Td isNumeric>0.91444</Td>
+                        <Td>{uuidv4()} &nbsp;
+                            <IconButton
+                                aria-label='Copy'
+                                size='sm'
+                                icon={<BiSolidCopy/>}
+                            /></Td> <Td isNumeric>0.7 ETH</Td>
+                    </Tr>
+                    <Tr>
+                        <Td fontWeight={"bold"} textAlign="right">Total</Td>
+                        <Td fontWeight={"bold"} isNumeric>1.00 ETH</Td>
                     </Tr>
                 </Tbody>
-                <Tfoot>
-                    <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
-                    </Tr>
-                </Tfoot>
+
             </Table>
         </TableContainer>
     )

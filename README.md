@@ -4,6 +4,8 @@
 
 #### Authors: Diyahir Campos, James Scanlon, Napas Udomsak
 
+Our Chaumian mint system is designed as an extension to the Ethereum network to enable privacy-focused, low-cost, and instant transfers of value. Building upon the eCash model, the system treats data as currency that can be securely and quickly transferred via various data-sharing platforms like email or SMS. Instead of relying on a centralized entity, the system utilizes Eigenlayer to create a trust-minimized environment. This ensures that while notes can be issued and honored like in traditional eCash systems, the risk of a single point of failure is mitigated. Essentially, users can transfer digital notes off-chain, allowing for quick settlements and enabling practical applications like micropayments, all while preserving user privacy.
+
 ---
 
 ## Project structure

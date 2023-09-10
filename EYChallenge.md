@@ -1,8 +1,8 @@
 # Cash Me Off-Chain
 
-## A privacy and scaling solution to Ethereum / EVM chains
+## A privacy and scaling solution to Ethereum / EVM chains leveraging eigenlayer and chaumian eCash
 
-#### Authors: Diyahir Campos, James Scanlon, Napas Udomsak
+#### Authors: [Diyahir Campos](https://github.com/diyahir), [James Scanlon](), [Napas Udomsak](https://github.com/tian000/)
 
 ---
 
@@ -19,7 +19,9 @@
 
 ## What is eCash?
 
-- eCash works similar to physical cash, where the data is the money.
+eCash is a digital currency model that functions much like physical cash, but with the added benefits of digital transfer. In this system, the data itself represents the monetary value. Unlike traditional digital transactions that require third-party validations and leave a public record, eCash can be transferred anonymously and without the need for on-chain confirmations. You can send eCash through any data transfer method—be it email, Telegram, SMS, or even written down on paper—and the transaction settles instantly. In a conventional eCash system, a central entity, often likened to a central bank, issues these digital notes and honors them upon presentation. Importantly, this entity doesn't have access to the full transaction history of each note, further preserving user privacy.
+
+- eCash works similar to physical cash, where the data _is_ the money.
 - eCash can be transferred in any way you can transfer data with instant settlement.
   - Email, telegram, sms, pen and paper, etc.
 - Central bank issues the notes, and honors the notes when they see them, but do not know the full history of the note.
@@ -39,7 +41,7 @@
 
 ```mermaid
 sequenceDiagram
-    participant ETH as Ethereum
+    participant ETH as Ethereum / EVM Chain (Nightfall)
     participant ECM as Eigenlayer Central Mint
     participant User1 as User 1
     participant User2 as User 2
@@ -63,9 +65,9 @@ sequenceDiagram
     ECM->>ETH: Send ETH to address
 ```
 
-### Ethereum (ETH)
+### Ethereum (ETH) / EVM Chain (Nightfall)
 
-Ethereum acts as the underlying blockchain where all the smart contracts and transactions are recorded. It's where the initial ETH comes from and returns to as users engage with the Eigenlayer Central Mint.
+Ethereum / Nightfall acts as the underlying blockchain where all the smart contracts and transactions are recorded. It's where the initial ETH comes from and returns to as users engage with the Eigenlayer Central Mint. The minter due to the unblinding signature scheme has no idea what the underlying data being signed is, so there is no way to link the note with anyone else in the sytem (anonymity set). Our implementation uses one ERC20 to be transfered, but could be adapted to support multiple ERC20s and native assets.
 
 ### Eigenlayer Central Mint (ECM)
 
@@ -124,7 +126,7 @@ These participants interact in a sequence to provide a trust-minimized, privacy-
 
 1. **User 2**: Sends B(data), data, address to Eigenlayer Central Mint
 
-### Workflow Walkthrough: Honors Note
+### Workflow Walkthrough: Mint Settles Note
 
 1. **User 2**: Provides Address
 2. **Eigenlayer Central Mint**: Verifies Signature And Honors eCash by Sending ETH
@@ -132,6 +134,8 @@ These participants interact in a sequence to provide a trust-minimized, privacy-
 ---
 
 ## Advantages and Use-cases
+
+The Chaumian mint system moves transactions off the mainnet, which has a couple of straightforward advantages. First, it allows payments to go through existing data transfer methods like email or SMS. This means you can send money using the platforms you're already familiar with, and it happens quickly. Second, because these transactions aren't happening on-chain, the costs are much lower. This makes micropayments—a small but often critical aspect of online transactions—much more practical. The data-as-a-bearer-instrument feature adds an additional layer of utility, essentially letting you 'carry' value in data form across different platforms or even offline.
 
 - Anonymous / Private
 - Off-chain
@@ -155,7 +159,7 @@ Only with Eigenlayer, can you remove this point of failure and have the lowest l
 
 1. **Deposit Money**, user sign data => U(data)
 2. **Bank signs** U(Data) => B(U(data)), sends back to user
-3. **User unsigns data** => U-1B(U(data))) => B(data)
+3. **User unsigns data** => U-1B(U(data)) => B(data)
 4. Now user has B(data) signed by Bank without ever revealing what 'data' is to the bank.
 5. Bank honors any note with its signature. [B(data), data] is a proof that at some point money was deposited since they signed it at some point.
 

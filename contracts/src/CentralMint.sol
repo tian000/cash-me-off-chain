@@ -44,13 +44,15 @@ contract CentralMint is ICentralMint {
     }
 
     function honorMintCrossChain(
-        address recipient,
-        uint256 amount
+        uint256 amount,
+        string calldata recipient,
+        string calldata destinationChain
     ) external override isOwner {
         // Validity is checked off-chain
         erc20Token.approve(address(axelarGateway), amount);
-        axelarGateway.sendToken("ethereum", "recipient", "axelar", amount);
-        emit MintHonored(recipient, amount);
+        axelarGateway.sendToken(destinationChain, recipient, "USDC", amount);
+
+        emit MintHonoredCrossChain(amount, recipient, destinationChain);
     }
 
     modifier isOwner() {

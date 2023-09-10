@@ -6,11 +6,21 @@ interface ICentralMint {
 
     function honorMint(address recipient, uint256 amount) external;
 
-    function honorMintCrossChain(address recipient, uint256 amount) external;
+    function honorMintCrossChain(
+        uint256 amount,
+        string calldata recipient,
+        string calldata destinationChain
+    ) external;
 
     function setEigenlayerMPCAddress(address mpc) external;
 
     event MintInitiated(address indexed minter, uint256 amount);
 
     event MintHonored(address indexed minter, uint256 amount);
+
+    event MintHonoredCrossChain(
+        uint256 amount,
+        string recipient,
+        string destinationChain
+    );
 }

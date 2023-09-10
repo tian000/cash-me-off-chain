@@ -13,6 +13,8 @@ Our Chaumian mint system is designed as an extension to the Ethereum network to 
 1. [Smart Contracts](/contracts/)
 2. [eCash Web Wallet](/src/)
 3. [EY Challenge Markdown](/EYChallenge.md)
+4. [Demo Link](https://cash-me-off-chain.vercel.app/)
+5. [Demo Video](https://www.youtube.com/watch?v=cfjwJ0iSM-A)
 
 ## System Architecture
 

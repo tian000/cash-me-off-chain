@@ -1,6 +1,6 @@
 import {IconButton, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr} from '@chakra-ui/react'
-import {v4 as uuidv4} from "uuid"
 import {BiSolidCopy} from "react-icons/bi";
+import {uuidv4} from "@/utils/uuid";
 
 export function NotesTable() {
     return (

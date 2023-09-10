@@ -18,7 +18,7 @@ import { Link } from "@chakra-ui/next-js";
 import { uuidv4 } from "@/utils/uuid";
 import { SendStepper } from "@/components/stepper";
 
-export function Step1({ nextCallback }: { nextCallback: () => void }) {
+function Step1({ nextCallback }: { nextCallback: () => void }) {
   const [value, setValue] = React.useState("");
 
   return (
@@ -51,7 +51,7 @@ import { SimpleGrid } from "@chakra-ui/react";
 import { NotesTable } from "@/components/notesTable";
 import { PageWrapper } from "@/components/pageWrapper";
 
-export function Step2() {
+function Step2() {
   const [isDone, setIsDone] = useState<boolean>(false);
 
   return (

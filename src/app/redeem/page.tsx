@@ -28,7 +28,7 @@ import { ReceiveStepper } from "@/components/receiveStepper";
 import { RedeemStepper } from "@/components/redeemStepper";
 import { PageWrapper } from "@/components/pageWrapper";
 
-export function Step1({ nextCallback }: { nextCallback: () => void }) {
+function Step1({ nextCallback }: { nextCallback: () => void }) {
   const [value, setValue] = React.useState("");
   const [isRedeeming, setIsRedeeming] = React.useState(false);
   const [isDone, setIsDone] = useState<boolean>(false);

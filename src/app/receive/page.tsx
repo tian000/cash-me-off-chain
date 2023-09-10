@@ -18,7 +18,7 @@ import { Link } from "@chakra-ui/next-js";
 import { ReceiveStepper } from "@/components/receiveStepper";
 import { PageWrapper } from "@/components/pageWrapper";
 
-export function Step1({ nextCallback }: { nextCallback: () => void }) {
+function Step1({ nextCallback }: { nextCallback: () => void }) {
   const [value, setValue] = React.useState("");
   const [isClaiming, setIsClaiming] = React.useState(false);
   const [isDone, setIsDone] = useState<boolean>(false);

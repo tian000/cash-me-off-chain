@@ -8,6 +8,7 @@ import {
   FormControl,
   HStack,
   Heading,
+  Skeleton,
   Spinner,
   Text,
   Textarea,
@@ -70,17 +71,9 @@ export function Step1({ nextCallback }: { nextCallback: () => void }) {
               />
             </VStack>
             <Box p="2" justifySelf="center" alignSelf="center">
-              {!isDone ? (
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  size="xl"
-                />
-              ) : (
+              <Skeleton isLoaded={isDone}>
                 <Text fontSize="2xl">1 ETH Recieved</Text>
-              )}
+              </Skeleton>
             </Box>
           </HStack>
           <Link href="/" color="blue.400" _hover={{ color: "blue.500" }}>

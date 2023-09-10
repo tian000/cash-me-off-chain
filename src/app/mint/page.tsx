@@ -14,6 +14,7 @@ import {
 import { Link } from "@chakra-ui/next-js";
 
 import { v4 as uuidv4 } from "uuid";
+import { SendStepper } from "@/components/stepper";
 
 export function Step1({ nextCallback }: { nextCallback: () => void }) {
   const [value, setValue] = React.useState("");
@@ -44,25 +45,19 @@ export function Step1({ nextCallback }: { nextCallback: () => void }) {
   );
 }
 
-export function Step2() {
-  const [isLoading, setIsLoading] = React.useState(true);
+import { SimpleGrid } from "@chakra-ui/react";
+import { NotesTable } from "@/components/notesTable";
 
-  useEffect(() => {
-    (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setIsLoading(false);
-    })();
-    return () => {
-      setIsLoading(true);
-    };
-  }, []);
+export function Step2() {
+  const [isDone, setIsDone] = useState<boolean>(false);
 
   return (
     <Flex align="center" justify="center" direction={"column"}>
-      {isLoading ? (
-        <>
-          <Heading>Minting eCash</Heading>
-          <Box p="2">
+      <Heading>Minting eCash</Heading>
+      <SimpleGrid columns={2} spacing={10}>
+        <SendStepper onDone={() => setIsDone(true)}></SendStepper>
+        <Box p="2" justifySelf="center" alignSelf="center">
+          {!isDone ? (
             <Spinner
               thickness="4px"
               speed="0.65s"
@@ -70,16 +65,11 @@ export function Step2() {
               color="blue.500"
               size="xl"
             />
-          </Box>
-        </>
-      ) : (
-        <>
-          <Heading>Share this message to anonymously send your bitcoin</Heading>
-          <Box p="2">
-            <Text fontSize="2xl">{uuidv4()}</Text>
-          </Box>
-        </>
-      )}
+          ) : (
+            <NotesTable />
+          )}
+        </Box>
+      </SimpleGrid>
     </Flex>
   );
 }

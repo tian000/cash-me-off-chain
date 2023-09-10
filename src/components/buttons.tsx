@@ -13,7 +13,7 @@ export function Buttons() {
                 <Button colorScheme='blue'>Redeem</Button>
             </Link>
 
-            <Link href='/redeem' color='blue.400' _hover={{color: 'blue.500'}}>
+            <Link href='/receive' color='blue.400' _hover={{color: 'blue.500'}}>
                 <Button colorScheme='blue'>Receive</Button>
             </Link>
         </Flex>

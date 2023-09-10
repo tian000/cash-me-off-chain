@@ -8,39 +8,45 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
+  VStack,
 } from "@chakra-ui/react";
 import { Transaction, TransactionRow } from "@/components/transactionRow";
 import { Buttons } from "@/components/buttons";
 const transactions: Transaction[] = [
   {
+    action: "Minted",
     symbol: "ETH",
-    amount: (518.74).toFixed(2),
+    amount: (8.74).toFixed(2),
     from: "me",
-    to: "0xpta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0",
+    to: "",
   },
   {
+    action: "Redeemed",
     symbol: "ETH",
-    amount: (67192.58).toFixed(2),
+    amount: (2.58).toFixed(2),
     from: "me",
-    to: "0xpta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0",
+    to: "0x68b621079432B44EECf0cfaA09D81EB5e5239cF8",
   },
   {
+    action: "Minted",
     symbol: "ETH",
-    amount: (25785.93).toFixed(2),
+    amount: (5.93).toFixed(2),
     from: "me",
-    to: "0xpta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0",
+    to: "",
   },
   {
+    action: "Redeemed",
     symbol: "ETH",
-    amount: (67192.58).toFixed(2),
+    amount: (2.58).toFixed(2),
     from: "me",
-    to: "0xpta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0",
+    to: "0x68b621079432B44EECf0cfaA09D81EB5e5239cF8",
   },
   {
+    action: "Redeemed",
     symbol: "ETH",
-    amount: (518.74).toFixed(2),
+    amount: (8.74).toFixed(2),
     from: "me",
-    to: "0xpta326yq3ejnqu7yhc40hhkcyj2rlhxn29pm5cteempkg5ke56gjq6289a0",
+    to: "0x68b621079432B44EECf0cfaA09D81EB5e5239cF8",
   },
 ];
 
@@ -49,18 +55,20 @@ export default function Home() {
     <Flex align="center" justify="center" direction={"column"}>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Stat display="flex" alignItems="center" justifyContent="space-between">
-          <StatLabel textAlign="center">Current Balance</StatLabel>
-          <StatNumber textAlign="center">345,670 ETH</StatNumber>
+          <StatNumber textAlign="center">Current Balance</StatNumber>
+          <StatNumber textAlign="center">1.35 ETH</StatNumber>
           <StatHelpText textAlign="center">
             <StatArrow type="increase" />
             23.36%
           </StatHelpText>
         </Stat>
       </Box>
-      {transactions.map((tx) => (
-        <TransactionRow {...tx} />
-      ))}
-      <Buttons />
+      <VStack>
+        {transactions.map((tx) => (
+          <TransactionRow key={tx.action + tx.amount} {...tx} />
+        ))}
+        <Buttons />
+      </VStack>
     </Flex>
   );
 }

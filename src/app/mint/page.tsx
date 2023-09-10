@@ -11,10 +11,11 @@ import {
   Skeleton,
   Spinner,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 
-import {uuidv4} from "@/utils/uuid";
+import { uuidv4 } from "@/utils/uuid";
 import { SendStepper } from "@/components/stepper";
 
 export function Step1({ nextCallback }: { nextCallback: () => void }) {
@@ -48,6 +49,7 @@ export function Step1({ nextCallback }: { nextCallback: () => void }) {
 
 import { SimpleGrid } from "@chakra-ui/react";
 import { NotesTable } from "@/components/notesTable";
+import { PageWrapper } from "@/components/pageWrapper";
 
 export function Step2() {
   const [isDone, setIsDone] = useState<boolean>(false);
@@ -72,9 +74,9 @@ export default function MintPage() {
   console.log(step);
 
   return (
-    <>
+    <PageWrapper>
       {step === 1 && <Step1 nextCallback={() => setStep(step + 1)}></Step1>}
       {step === 2 && <Step2></Step2>}
-    </>
+    </PageWrapper>
   );
 }

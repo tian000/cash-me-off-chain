@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { ReceiveStepper } from "@/components/receiveStepper";
+import { PageWrapper } from "@/components/pageWrapper";
 
 export function Step1({ nextCallback }: { nextCallback: () => void }) {
   const [value, setValue] = React.useState("");
@@ -92,6 +93,8 @@ export default function RedeemPage() {
   console.log(step);
 
   return (
-    <>{step === 1 && <Step1 nextCallback={() => setStep(step + 1)}></Step1>}</>
+    <PageWrapper>
+      {step === 1 && <Step1 nextCallback={() => setStep(step + 1)}></Step1>}
+    </PageWrapper>
   );
 }
